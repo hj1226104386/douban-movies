@@ -9,7 +9,6 @@ Vue.config.productionTip = false
 
 // 引入后使用
 Vue.use(VueResource)
-// Vue.use(Element)
 
 /* eslint-disable no-new */
 new Vue({

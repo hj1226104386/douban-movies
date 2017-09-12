@@ -16,12 +16,11 @@
         datas: []
       }
     },
-    mounted: function () {
+    created: function () {
       this.$http.jsonp('https://api.douban.com/v2/movie/top250?count=10', {}, {emulateJSON: true})
         .then(function (res) {
           // 正确的回调
           this.datas = res.data.subjects
-          console.log(this.datas)
         }, function (res) {
           alert('出错了')
         })

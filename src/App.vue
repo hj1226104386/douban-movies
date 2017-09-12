@@ -1,47 +1,50 @@
 <template>
   <div id="app">
     <header>
-      <span class='back iconfont icon-back'></span>
+      <span v-if="isHome===false" class='back iconfont icon-back'></span>
       <p class='title'>豆瓣电影</p>
     </header>
     <div class="mainBody">
-
+      <router-view></router-view>
     </div>
     <ul class="toolBar">
       <li>
-        <a href="">
+        <router-link to='/movieList'>
           <i class='playing iconfont icon-ing'></i>
           <span class=toolIcon>正在热映</span>
-        </a>
+        </router-link>
       </li>
       <li>
-        <a href="">
+        <router-link to='/second'>
           <i class='rightNow iconfont icon-rightnow'></i>
           <span class=toolIcon>即将上映</span>
-        </a>
+        </router-link>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-  import first from './components/first.vue'
+  import movieList from './components/movieList.vue'
   import second from './components/second.vue'
 
   export default {
     name: 'app',
     data () {
       return {
+        isHome: true,
         topTitle: '头部标题2'
       }
     },
-    components: {first, second}
+    components: {movieList, second}
   }
 </script>
 
 <style scoped>
   @import './assets/iconfont/iconfont.css';
-
+  .router-link-active{
+    color: #268DCD;
+  }
   html, body {
     height: 100%;
   }
@@ -59,9 +62,9 @@
     height: 50px;
     background-color: #268DCD;
     position: absolute;
-    top:0;
+    top: 0;
     box-sizing: border-box;
-    color:#fff;
+    color: #fff;
   }
 
   header > .back {
@@ -69,7 +72,7 @@
     left: 15px;
     top: 16px;
     cursor: pointer;
-    font-size:18px;
+    font-size: 18px;
   }
 
   header > .title {
@@ -80,36 +83,43 @@
 
   .mainBody {
     height: 100%;
-    background-color: lightblue;
-    padding-bottom:60px;
-    padding-top: 40px;
+    padding-bottom: 60px;
+    padding-top: 50px;
   }
-  .toolBar{
-    font-size:0;
+
+  .toolBar {
     height: 60px;
     width: 100%;
-    position: fixed;
-    bottom:0;
-    background-color:#FEFEFE;
+    position: absolute;
+    bottom: 0;
+    background-color: #ccc;
+    overflow: hidden;
   }
-  .toolBar>li{
+
+  .toolBar > li {
     width: 50%;
     height: 100%;
-    display: inline-block;
-    font-size:15px;
+    float: left;
+    font-size: 15px;
     text-align: center;
     padding-top: 4px;
   }
-  .toolBar>li>a{
+  .toolBar > li:nth-child(2){
+    padding-top: 9px;
+  }
+  .toolBar > li > a {
     display: block;
   }
-  .toolBar>li .playing{
-    font-size:30px;
+
+  .toolBar > li .playing {
+    font-size: 30px;
   }
-  .toolBar>li .rightNow{
-    font-size:25px;
+
+  .toolBar > li .rightNow {
+    font-size: 25px;
   }
-  .toolBar>li span{
+
+  .toolBar > li span {
     display: block;
     margin-top: 4px;
   }

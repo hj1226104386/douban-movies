@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import first from '@/components/first'
+import movieList from '@/components/movieList'
 import second from '@/components/second'
 
 Vue.use(Router)
@@ -9,11 +9,11 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/first'
+      redirect: '/movieList'
     },
     {
-      path: '/first',
-      component: first
+      path: '/movieList',
+      component: movieList
     },
     {
       path: '/second',
