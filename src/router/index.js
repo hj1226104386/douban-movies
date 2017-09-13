@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import movieList from '@/components/movieList'
 import detail from '@/components/detail'
+import rightNow from '@/components/rightNow'
 
 Vue.use(Router)
 
@@ -18,6 +19,10 @@ export default new Router({
     {
       path: '/detail',
       component: detail
+    },
+    {
+      path: '/rightNow',
+      component: rightNow
     }
   ]
 })

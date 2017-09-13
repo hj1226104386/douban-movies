@@ -31,6 +31,7 @@
     store,
     created: function () {
       store.state.showLoading = true
+      store.state.showBack = false
       this.$http.jsonp('https://api.douban.com/v2/movie/in_theaters?city=108288', {}, {emulateJSON: true})
         .then((res) => {
           this.movies = res.data.subjects

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <header>
-      <span v-show="$store.state.showBack===false" class='back iconfont icon-back'></span>
+      <span v-if="$store.state.showBack===true" class='back iconfont icon-back' @click='goBack'></span>
       <p class='title'>豆瓣电影</p>
     </header>
     <div class="mainBody">
@@ -15,7 +15,7 @@
         </router-link>
       </li>
       <li>
-        <router-link to='/second'>
+        <router-link to='/rightNow'>
           <i class='rightNow iconfont icon-rightnow'></i>
           <span class=toolIcon>即将上映</span>
         </router-link>
@@ -29,16 +29,23 @@
   import movieList from './components/movieList.vue'
   import detail from './components/detail.vue'
   import loading from './components/loading.vue'
+  import rightNow from './components/rightNow.vue'
   import store from './vuex/store'
+
   export default {
     name: 'app',
     data () {
       return {}
     },
     store,
-    components: {movieList, detail, loading},
+    components: {movieList, detail, loading, rightNow},
     created: function () {
       this.showLoading = true
+    },
+    methods: {
+      goBack: function () {
+        this.$router.go(-1)
+      }
     }
   }
 </script>

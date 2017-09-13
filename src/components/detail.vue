@@ -1,7 +1,7 @@
 <template>
   <div class="detail animated bounceInRight">
     <div class="moviePic">
-      <img :src="detailMsg.images.large">
+      <img v-bind:src="detailMsg.images.large">
     </div>
     <div class="detailMsg">
       <h4>{{detailMsg.title}}
@@ -34,7 +34,7 @@
     store,
     created: function () {
       store.state.showLoading = true
-      store.state.showBack = false
+      store.state.showBack = true
       var getId = store.state.currentMovieId
       this.$http.jsonp('https://api.douban.com/v2/movie/subject/' + getId, {}, {emulateJSON: true})
         .then(function (res) {

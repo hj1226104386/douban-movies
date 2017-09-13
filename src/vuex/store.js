@@ -11,10 +11,15 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     showLoading: false,
-    showBack: false,
+    showBack: true,
     currentMovieId: ''
   },
-  actions: {},
+  actions: {
+    // 显示返回图标
+    showBackIconOrHide: function (state, bool) {
+      state.showBack = bool
+    }
+  },
   mutations: {},
   getters: {}
 })
