@@ -42,6 +42,7 @@
           this.detailMsg = res.body
           store.state.showLoading = false
         }, function (res) {
+          // 错误的回调
           alert('出错了')
         })
     }
