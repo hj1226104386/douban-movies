@@ -1,6 +1,6 @@
 # sell-app
 
-> 外卖APP
+> vue-cli构建豆瓣电影app
 
 ## Build Setup
 
