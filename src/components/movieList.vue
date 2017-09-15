@@ -11,7 +11,7 @@
           <p>导演：{{one.directors[0].name}}</p>
           <p>上映时间：{{one.year}}</p>
           <p>类型：<span v-for='type in one.genres'>{{type}}、</span></p>
-          <p>综合评分：{{one.rating.average}}</p>
+          <p>综合评分：{{one.rating.average}}、{{$store.state.msg}}</p>
         </div>
       </li>
     </ul>
@@ -19,6 +19,8 @@
 </template>
 
 <script>
+  import store from '../vuex/store'
+
   export default {
     name: 'movieList',
     data () {
@@ -26,18 +28,23 @@
         movies: ''
       }
     },
+    store,
     created: function () {
+      store.state.showLoading = true
+      store.state.showBack = false
       this.$http.jsonp('https://api.douban.com/v2/movie/in_theaters?city=108288', {}, {emulateJSON: true})
         .then((res) => {
           this.movies = res.data.subjects
-          console.log(this.movies)
+          store.state.showLoading = false
         }, (res) => {
           alert('获取数据失败')
         })
     },
     methods: {
       getDetail: function (id, event) {
-        alert(id)
+        store.state.currentMovieId = id
+        // 跳到详情组件
+        this.$router.push({ path: '/detail' })
       }
     }
   }

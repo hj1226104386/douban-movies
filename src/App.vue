@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <header>
-      <span v-if="isHome===false" class='back iconfont icon-back'></span>
+      <span v-if="$store.state.showBack===true" class='back iconfont icon-back' @click='goBack'></span>
       <p class='title'>豆瓣电影</p>
     </header>
     <div class="mainBody">
@@ -15,36 +15,48 @@
         </router-link>
       </li>
       <li>
-        <router-link to='/second'>
+        <router-link to='/rightNow'>
           <i class='rightNow iconfont icon-rightnow'></i>
           <span class=toolIcon>即将上映</span>
         </router-link>
       </li>
     </ul>
+    <loading v-show='$store.state.showLoading===true'></loading>
   </div>
 </template>
 
 <script>
   import movieList from './components/movieList.vue'
-  import second from './components/second.vue'
+  import detail from './components/detail.vue'
+  import loading from './components/loading.vue'
+  import rightNow from './components/rightNow.vue'
+  import store from './vuex/store'
 
   export default {
     name: 'app',
     data () {
-      return {
-        isHome: true,
-        topTitle: '头部标题2'
-      }
+      return {}
     },
-    components: {movieList, second}
+    store,
+    components: {movieList, detail, loading, rightNow},
+    created: function () {
+      this.showLoading = true
+    },
+    methods: {
+      goBack: function () {
+        this.$router.go(-1)
+      }
+    }
   }
 </script>
 
 <style scoped>
   @import './assets/iconfont/iconfont.css';
-  .router-link-active{
+
+  .router-link-active {
     color: #268DCD;
   }
+
   html, body {
     height: 100%;
   }
@@ -104,9 +116,11 @@
     text-align: center;
     padding-top: 4px;
   }
-  .toolBar > li:nth-child(2){
+
+  .toolBar > li:nth-child(2) {
     padding-top: 9px;
   }
+
   .toolBar > li > a {
     display: block;
   }
